@@ -16,7 +16,6 @@ if !FileExist(koreanCur) || !FileExist(englishCur) {
 
 ; ---- 상수/커서 ID ----
 SPI_SETCURSORS := 0x57
-; 대표 커서 ID들 (필요시 추가)
 IDC_ARROW := 32512
 IDC_IBEAM := 32513
 IDC_WAIT  := 32514
@@ -30,6 +29,11 @@ Menu, Tray, NoStandard
 Menu, Tray, Add, Restore default cursors, RestoreCursors
 Menu, Tray, Add
 Menu, Tray, Add, Exit, Quit
+
+; ---- IME 메시지/플래그 ----
+WM_IME_CONTROL        := 0x0283
+IMC_GETCONVERSIONMODE := 0x0001
+IME_CMODE_NATIVE      := 0x0001   ; 한글 모드 비트 플래그
 
 ; 강제 테스트 핫키 
 ^!k::ApplyAllCursors(koreanCur) ; Ctrl+Alt+K
@@ -45,23 +49,18 @@ return
 CheckIME:
     ; 현재 활성화된 윈도우(창)의 핸들을 가져옴
     ; → 이 창의 입력기(IME) 상태를 확인하기 위해 필요
-    hWnd := WinActive("A")
+    hWnd := DllCall("GetForegroundWindow", "ptr")
 
     ; 활성 창에 연결된 IME 컨텍스트 핸들을 얻음
     ; (IME 상태를 직접 조회할 수 있는 "핸들")
-    hIMC := DllCall("imm32\ImmGetContext", "ptr", hWnd, "ptr")
+    hIME := DllCall("imm32\ImmGetDefaultIMEWnd", "ptr", hWnd, "ptr")
+    
 
-    if (hIMC) {
-        ; IME가 켜져 있는지 여부 확인
-        ; 1 = 한글 입력 모드, 0 = 영어 입력 모드
-        imeOpen := DllCall("imm32\ImmGetOpenStatus", "ptr", hIMC)
+    if (!hIME)
+        return
 
-        ; 사용이 끝난 IME 컨텍스트를 해제 (메모리 누수 방지)
-        DllCall("imm32\ImmReleaseContext", "ptr", hWnd, "ptr", hIMC)
-    } else {
-        ; IME 컨텍스트를 얻지 못했으면 이전 상태를 그대로 유지
-        imeOpen := LastIME
-    }
+    convMode := DllCall("SendMessage", "ptr", hIME, "uint", WM_IME_CONTROL, "ptr", IMC_GETCONVERSIONMODE, "ptr", 0, "ptr")
+    imeOpen := (convMode & IME_CMODE_NATIVE) ? 1 : 0
 
     ; IME 상태가 바뀌었을 때만 실행
     ; → 불필요한 반복 호출 방지 (성능 최적화 + 깜빡임 방지)
