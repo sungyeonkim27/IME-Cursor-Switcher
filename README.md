@@ -1,4 +1,5 @@
 # IME-CURSOR-SWITCHER
+👉 [노션 프로젝트 페이지 바로가기](https://www.notion.so/your-notion-link)
 
 ## 📌 프로젝트 목적
 Windows 환경에서 **한/영 입력 전환 상태를 마우스 커서 이미지에 반영**하는 AutoHotkey 스크립트입니다.  
