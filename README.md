@@ -35,6 +35,7 @@ IME-CURSOR-SWITCHER
 
 ## 실행영상
 
-https://github.com/user-attachments/assets/41e5e1b6-d8b9-4809-a28e-ad8e945eb65b
+https://github.com/user-attachments/assets/96b416f6-607f-4645-994d-c71a623061e4
+
 
 
