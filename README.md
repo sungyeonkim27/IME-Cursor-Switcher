@@ -1,3 +1,5 @@
+<img width="248" height="84" alt="image" src="https://github.com/user-attachments/assets/4a3b8e64-6661-491c-af03-efd620e680ba" />
+
 # IME-CURSOR-SWITCHER
 👉 [노션 프로젝트 페이지 바로가기](https://www.notion.so/your-notion-link)
 
