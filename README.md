@@ -33,7 +33,7 @@ IME-CURSOR-SWITCHER
 └─ README.md
 ```
 
-## 실행영상
+## 📹실행영상
 
 https://github.com/user-attachments/assets/96b416f6-607f-4645-994d-c71a623061e4
 
