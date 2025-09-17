@@ -11,9 +11,10 @@ SetBatchLines, -1
 ListLines, Off
 SetWorkingDir, %A_ScriptDir%
 
-; ---- 커서 파일 경로 ----
-koreanCur := A_ScriptDir . "\korean.cur"
-englishCur := A_ScriptDir . "\english.cur"
+; ---- 커서 파일 경로 ---- 
+cursorDir := A_ScriptDir . "\..\images"
+koreanCur := cursorDir . "\korean.cur"
+englishCur := cursorDir . "\english.cur"
 
 if !FileExist(koreanCur) || !FileExist(englishCur) {
     MsgBox, 16, Cursor files missing, korean.cur 또는 english.cur 파일을 찾을 수 없습니다.`n스크립트와 같은 폴더에 두세요.
@@ -50,13 +51,6 @@ return
 
 ; ========= 키 후킹 =========
 *~vk15::  ; 한/영 키
-    if (A_TickCount < suppressUntil) ; 아직 디바운스 시간 안 지남 → 무시
-        return
-    isHangul := !isHangul
-    ApplyAllCursors(isHangul ? koreanCur : englishCur)
-    suppressUntil := A_TickCount + 200   ; 200ms 동안 중복 실행 방지
-return
-
 *~^Space::   ; Ctrl+Space
 *~#Space::   ; Win+Space
 *~!Shift::   ; Alt+Shift
@@ -64,7 +58,7 @@ return
     if (A_TickCount < suppressUntil)
         return
     isHangul := !isHangul
-    ApplyAllCursors(isHangul ? koreanCur : englishCur)
+    ApplyAllCursors(isHangul ?  englishCur : koreanCur)
     suppressUntil := A_TickCount + 200
 return
 
