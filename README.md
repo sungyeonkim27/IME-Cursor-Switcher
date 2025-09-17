@@ -18,6 +18,7 @@ Windows 환경에서 **한/영 입력 전환 상태를 마우스 커서 이미�
 
 ## 📂 디렉토리 구조
 
+``
 IME-CURSOR-SWITCHER
  ├─ application        ← 현재 사용하는 실행 스크립트
  │    └─ IME-Cursor-Switcher4.ahk
@@ -30,3 +31,4 @@ IME-CURSOR-SWITCHER
  │    └─ ImmGetContext debug code.ahk
  ├─ images             ← 커서 이미지(.cur)
  └─ README.md
+ ``
