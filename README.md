@@ -1,7 +1,7 @@
 <img width="248" height="84" alt="image" src="https://github.com/user-attachments/assets/4a3b8e64-6661-491c-af03-efd620e680ba" />
 
 # IME-CURSOR-SWITCHER
-👉 [노션 프로젝트 페이지 바로가기]((https://pacific-climb-77d.notion.site/AutoHotKey-IME-Cursor-Switcher-26a34bbabdcb80b4b9fdfad0352168d8))
+👉 [노션 프로젝트 페이지 바로가기](https://pacific-climb-77d.notion.site/AutoHotKey-IME-Cursor-Switcher-26a34bbabdcb80b4b9fdfad0352168d8)
 
 ##  프로젝트 목적
 Windows 환경에서 **한/영 입력 전환 상태를 마우스 커서 이미지에 반영**하는 AutoHotkey 스크립트입니다.  
